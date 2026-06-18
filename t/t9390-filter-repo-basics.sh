@@ -430,6 +430,23 @@ test_expect_success 'commit signatures ignored' '
 	)
 '
 
+test_expect_success 'commit signatures roundtrip via --stdin' '
+	(
+		git init commit_signatures_roundtrip &&
+		cd commit_signatures_roundtrip &&
+
+		git filter-repo --stdin --dry-run --force <../sig_input &&
+
+		test_path_is_file .git/filter-repo/fast-export.filtered &&
+		grep "^gpgsig sha1 openpgp$" .git/filter-repo/fast-export.filtered >out &&
+		test_line_count = 2 out &&
+		grep "^gpgsig sha256 openpgp$" .git/filter-repo/fast-export.filtered >out &&
+		test_line_count = 1 out &&
+		grep "sha1 signature stuff" .git/filter-repo/fast-export.filtered &&
+		grep "sha256 signature stuff" .git/filter-repo/fast-export.filtered
+	)
+'
+
 test_expect_success 'commit message encoding preserved if requested' '
 	(
 		git init commit_message_encoding &&
