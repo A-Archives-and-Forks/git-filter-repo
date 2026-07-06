@@ -234,7 +234,7 @@ class AncestryGraph(object):
     # added to the AncestryGraph
     self.cur_value = 0
 
-    # A mapping from the external identifers given to us to the simple integers
+    # A mapping from the external identifiers given to us to the simple integers
     # we use in self.graph
     self.value = {}
 
@@ -1459,7 +1459,7 @@ class FastExportParser(object):
     # Create the progress message
     progress = Progress(message)
 
-    # Call any user callback to allow them to modify the progress messsage
+    # Call any user callback to allow them to modify the progress message
     if self._progress_callback:
       self._progress_callback(progress)
 
@@ -2306,7 +2306,7 @@ EXAMPLES
         # to avoid passing --reencode=yes to fast-export (that option was the
         # default prior to git-2.23)
         args.preserve_commit_encoding = None
-      # If we don't have fast-exoprt --reencode, we may also be missing
+      # If we don't have fast-export --reencode, we may also be missing
       # diff-tree --combined-all-paths, which is even more important...
       p = subproc.Popen('git diff-tree -h'.split(),
                         stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
@@ -3190,7 +3190,7 @@ class RepoFilter(object):
     self._commit_renames = {}
 
     # A set of original_ids (i.e. original hashes) for which we have not yet
-    # gotten the new hashses; the value is always the corresponding fast-export
+    # gotten the new hashes; the value is always the corresponding fast-export
     # id (i.e. commit.id)
     self._pending_renames = collections.OrderedDict()
 
